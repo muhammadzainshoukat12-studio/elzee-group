@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elzee Group</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    /* ====== GENERAL RESET ====== */
+    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+    body { line-height:1.6; color:#333; }
+
+    /* ====== HEADER ====== */
+    header { display:flex; justify-content:space-between; align-items:center; padding:20px; background:#fff; box-shadow:0 2px 5px rgba(0,0,0,0.1); position:fixed; width:100%; top:0; z-index:1000; }
+    header .logo { font-size:24px; font-weight:bold; color:#0d6efd; }
+    header .logo img{
+  height: 45px;      /* professional size */
+  width: auto;       /* aspect ratio safe */
+}
+
+    nav ul { list-style:none; display:flex; gap:20px; }
+    nav ul li { position:relative; }
+    nav ul li a { text-decoration:none; color:#333; font-weight:500; }
+    nav ul li:hover > ul { display:block; }
+    nav ul li ul { display:none; position:absolute; top:100%; left:0; background:#fff; padding:10px 0; min-width:150px; box-shadow:0 2px 5px rgba(0,0,0,0.2); }
+    nav ul li ul li { padding:5px 20px; }
+    nav ul li ul li a { color:#333; }
+
+    /* ====== HERO SLIDER ====== */
+    .hero { margin-top:80px; position:relative; overflow:hidden; }
+    .slides { display:flex; transition:transform 0.5s ease-in-out; }
+    .slide { min-width:100%; height:400px; position:relative; display:flex; justify-content:center; align-items:center; color:#fff; text-align:center; }
+    .slide img { width:100%; height:400px; object-fit:cover; }
+    .slide-content { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); }
+    .slide h1 { font-size:36px; margin-bottom:10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .slide p { font-size:18px; margin-bottom:15px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .slide button { padding:10px 20px; border:none; background:#0d6efd; color:#fff; font-size:16px; cursor:pointer; border-radius:5px; }
+
+    /* ====== ABOUT US ====== */
+    #about { padding:60px 20px; text-align:center; background:#f9f9f9; }
+    #about img { width:150px; height:150px; border-radius:50%; margin-bottom:20px; }
+    #about h2 { font-size:28px; margin-bottom:10px; }
+    #about p { font-size:16px; max-width:700px; margin:0 auto; }
+
+    /* ====== DEPARTMENTS ====== */
+    #departments { padding:60px 20px; text-align:center; }
+    #departments h2 { font-size:28px; margin-bottom:40px; }
+    .dept-container { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+    .dept-card { background:#fff; padding:20px; width:250px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:transform 0.3s; cursor:pointer; }
+    .dept-card:hover { transform:translateY(-5px); }
+    .dept-card img { width:100%; height:150px; object-fit:cover; border-radius:10px; margin-bottom:15px; }
+    .dept-card h3 { font-size:20px; margin-bottom:10px; }
+    .dept-card p { font-size:14px; margin-bottom:15px; }
+    .dept-card a { text-decoration:none; color:#fff; background:#0d6efd; padding:8px 15px; border-radius:5px; }
+
+    /* ====== CONTACT ====== */
+    #contact { padding:60px 20px; background:#f9f9f9; display:flex; flex-wrap:wrap; justify-content:center; gap:40px; }
+    .contact-form { flex:1; min-width:300px; }
+    .contact-form input, .contact-form textarea { width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px; }
+    .contact-form button { padding:10px 20px; border:none; background:#0d6efd; color:#fff; font-size:16px; cursor:pointer; border-radius:5px; }
+    .contact-map { flex:1; min-width:300px; }
+    .contact-map iframe { width:100%; height:300px; border:0; border-radius:10px; }
+
+    /* ====== FOOTER ====== */
+    footer { background:#333; color:#fff; padding:30px 20px; text-align:center; position:relative; }
+    footer .social-icons a { color:#fff; margin:0 10px; font-size:20px; text-decoration:none; }
+    .social-icons{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.social-icons a{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #000;
+  font-size: 15px;
+}
+
+.social-icons img{
+  width: 22px;
+  height: 22px;
+}
+
+.social-icons a:hover{
+  color: #1DA1F2;
+}
+
+    /* ====== FLOATING WHATSAPP ====== */
+    .whatsapp-float { position:fixed; bottom:20px; right:20px; background:#25D366; color:#fff; width:60px; height:60px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:30px; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.3); }
+    
+    /* ====== RESPONSIVE ====== */
+    @media(max-width:768px){ .dept-container { flex-direction:column; align-items:center; } }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo"><img src="ELZEE SKILLS (1).png"></div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li>
+          <a href="#departments">Departments</a>
+          <ul>
+            <li><a href="#commerce">Commerce</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#hotel">Hotel</a></li>
+            <li><a href="#arts">Arts</a></li>
+            <li><a href="#devsolve">DevSolve</a></li>
+          </ul>
+        </li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO SLIDER -->
+  <section class="hero" id="home">
+    <div class="slides">
+      <div class="slide">
+        <img src="smart home product.jfif" alt="Commerce">
+        <div class="slide-content">
+          <h1>Smart Home Products</h1>
+          <p>Electric Brush & Kitchen Tools with COD Pakistan</p>
+          <button>Explore Now</button>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="learn new skills.jfif" alt="Skills">
+        <div class="slide-content">
+          <h1>Learn New Skills</h1>
+          <p>Online Courses for Everyone</p>
+          <button>Enroll Now</button>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="quality booking hotel.jfif" alt="Hotel">
+        <div class="slide-content">
+          <h1>Quality Hotel Booking</h1>
+          <p>Comfortable Rooms & Packages</p>
+          <button>Book Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US -->
+  <section id="about">
+    <img src="zain image.jpg" alt="Owner">
+    <h2>About Elzee Group</h2>
+    <p>Welcome to Elzee Group. We provide multi-domain products & services with trust, quality, and fast delivery. Our mission is to make every service accessible across Pakistan.</p>
+  </section>
+
+  <!-- DEPARTMENTS -->
+  <section id="departments">
+    <h2>Our Departments</h2>
+    <div class="dept-container">
+      <div class="dept-card">
+        <img src="https://via.placeholder.com/250x150?text=Commerce" alt="Commerce">
+        <h3>Commerce</h3>
+        <p>Electric Brush & Kitchen Tools with COD</p>
+        <a href="#commerce">Explore</a>
+      </div>
+      <div class="dept-card">
+        <img src="https://via.placeholder.com/250x150?text=Skills" alt="Skills">
+        <h3>Skills</h3>
+        <p>Online Courses & Learning Programs</p>
+        <a href="#skills">Explore</a>
+      </div>
+      <div class="dept-card">
+        <img src="https://via.placeholder.com/250x150?text=Hotel" alt="Hotel">
+        <h3>Hotel</h3>
+        <p>Room Booking & Packages</p>
+        <a href="#hotel">Explore</a>
+      </div>
+      <div class="dept-card">
+        <img src="https://via.placeholder.com/250x150?text=Arts" alt="Arts">
+        <h3>Arts</h3>
+        <p>Creative Designs & Commissions</p>
+        <a href="#arts">Explore</a>
+      </div>
+      <div class="dept-card">
+        <img src="https://via.placeholder.com/250x150?text=DevSolve" alt="DevSolve">
+        <h3>DevSolve</h3>
+        <p>IT & Software Services</p>
+        <a href="#devsolve">Explore</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT US -->
+  <section id="contact">
+    <div class="contact-form">
+      <h2>Contact Us</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="tel" placeholder="Your Phone" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+    <div class="contact-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18..." allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo">Elzee Group</div>
+    <p>©️ 2026 Elzee Group. All Rights Reserved.</p>
+    <div class="social-icons">
+
+  <a href="https://www.youtube.com/@MuhammadZainShoukatHafiz" target="_blank">
+    <img src="youtube.png" alt="YouTube"> YouTube
+  </a>
+
+  <a href="https://www.tiktok.com/@muhammadzainshoukathafiz" target="_blank">
+    <img src="tiktok.png" alt="TikTok"> TikTok
+  </a>
+
+  <a href="https://www.facebook.com/profile.php?id=61585925754479" target="_blank">
+    <img src="facebook.png" alt="Facebook"> Facebook
+  </a>
+
+  <a href="https://www.linkedin.com/in/muhammad-zain-shoukat-a1598b3a0/" target="_blank">
+    <img src="linkdinimage.png" alt="LinkedIn"> LinkedIn
+  </a>
+
+  <a href="https://x.com/ZainShouka92249" target="_blank">
+    <img src="twiter.png" alt="Twitter"> Twitter
+  </a>
+
+</div>
+
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/92XXXXXXXXXX" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+
+  <!-- JS HERO SLIDER -->
+  <script>
+    const slides = document.querySelector('.slides');
+    const slideCount = slides.children.length;
+    let index = 0;
+    setInterval(() => {
+      index++;
+      if(index >= slideCount) index = 0;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+    }, 5000);
+  </script>
+
+</body>
+</html>
